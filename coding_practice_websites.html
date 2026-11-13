@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="A curated directory of coding practice websites with level, pricing, best-for notes and direct links." />
+<title>Coding Practice Websites — Developer Toolkit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  color-scheme: light;
+  --bg:#fff3b8; --bg2:#fffbe0; --surface:#fffdf0; --line:#ecd66e;
+  --ink:#3a0a1c; --muted:#7d4a5c;
+  --red:#d90429; --pink:#e0245e; --rose:#b0124a;
+  --grad:linear-gradient(110deg,#e11d48 0%,#f0508f 100%);
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.55;
+  background-image:radial-gradient(900px 420px at 90% -5%,rgba(255,45,85,.18),transparent 60%),radial-gradient(700px 380px at -5% 30%,rgba(255,95,162,.14),transparent 60%);
+  background-repeat:no-repeat}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--pink);outline-offset:3px;border-radius:6px}
+
+/* Hero */
+.hero{width:min(1120px,calc(100% - 40px));margin:0 auto;padding:64px 0 34px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end}
+.hero h1{margin:0;font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,5.4vw,4rem);line-height:1.04;letter-spacing:-.04em;max-width:15ch}
+.hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:18px 0 0;max-width:56ch;color:var(--muted);font-size:1.05rem}
+.big{font-family:var(--display);font-weight:800;line-height:.82;text-align:right;color:transparent;-webkit-text-stroke:2px var(--red);font-size:clamp(5rem,14vw,10rem);letter-spacing:-.06em}
+.big small{display:block;margin-top:10px;font-family:var(--body);font-weight:500;font-size:.95rem;letter-spacing:0;color:var(--muted);-webkit-text-stroke:0}
+
+main{width:min(1120px,calc(100% - 40px));margin:0 auto;padding-bottom:70px}
+
+/* Controls */
+.controls{position:sticky;top:0;z-index:5;margin:0 -12px;padding:14px 12px;background:linear-gradient(var(--bg) 78%,transparent);backdrop-filter:blur(8px)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.search{flex:1 1 260px;max-width:440px}
+.search input{width:100%;padding:12px 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg2);color:var(--ink);font:inherit}
+.search input::placeholder{color:#a07a52}
+.search input:focus{outline:none;border-color:var(--pink);box-shadow:0 0 0 3px rgba(224,36,94,.2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);font:inherit;font-size:.86rem;font-weight:500;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.chip:hover{border-color:var(--pink);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--grad);border-color:transparent;color:#fff;font-weight:700}
+.count{margin-left:auto;color:var(--muted);font-size:.9rem}
+
+/* Sections */
+.sec{margin-top:38px}
+.sec-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.sec-head h2{margin:0;font-family:var(--display);font-size:1.55rem;letter-spacing:-.025em}
+.sec-head p{margin:0;color:var(--muted);font-size:.92rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+
+/* Cards */
+.card{position:relative;display:flex;flex-direction:column;gap:10px;padding:18px 18px 16px 22px;border-radius:14px;background:var(--surface);border:1px solid var(--line);overflow:hidden}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--grad)}
+.card:hover{border-color:var(--pink)}
+.top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.card h3{margin:0;font-family:var(--display);font-size:1.2rem;letter-spacing:-.02em}
+.save{border:0;background:none;color:#b08a60;font-size:1.25rem;line-height:1;cursor:pointer;padding:2px 4px}
+.save:hover{color:var(--pink)}
+.save[aria-pressed="true"]{color:var(--red)}
+.tag{color:var(--rose);font-size:.82rem;font-weight:700}
+.card p{margin:0;color:var(--muted);font-size:.92rem}
+.best{font-size:.88rem;color:var(--ink)}
+.best b{color:var(--pink)}
+.meta{display:flex;flex-wrap:wrap;gap:6px}
+.pill{padding:3px 10px;border-radius:999px;border:1px solid var(--line);font-size:.75rem;color:var(--muted)}
+.pill.free{border-color:#e0245e66;color:var(--rose)}
+.pill.paid{border-color:#d9042966;color:#c01040}
+.go{margin-top:auto;padding-top:6px;align-self:flex-start;font-weight:700;font-size:.9rem;text-decoration:none;color:var(--pink)}
+.go:hover{color:var(--ink);text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:4px}
+
+/* Plan */
+.plan{margin-top:54px;padding:28px;border-radius:18px;background:linear-gradient(135deg,#ffd9e4,#ffe8c2);border:1px solid #f0a3bb}
+.plan h2{margin:0 0 14px;font-family:var(--display);font-size:1.6rem;letter-spacing:-.025em}
+.plan ol{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;counter-reset:s}
+.plan li{counter-increment:s;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.65);border:1px solid #f0a3bb;color:var(--muted);font-size:.92rem}
+.plan li::before{content:"Step " counter(s);display:block;margin-bottom:4px;color:var(--pink);font-weight:700;font-size:.82rem}
+.plan li b{color:var(--ink)}
+.plan .note{margin:16px 0 0;color:var(--rose);font-size:.92rem}
+.empty{display:none;padding:40px;text-align:center;color:var(--muted)}
+footer{padding:22px;border-top:1px solid var(--line);color:var(--muted);text-align:center;font-size:.82rem}
+
+@media (max-width:640px){.hero{grid-template-columns:1fr;padding-top:40px}.big{text-align:left}.count{margin-left:0;width:100%}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media print{body{background:#fff;color:#000}.controls,.save{display:none}.card{break-inside:avoid;background:#fff;border-color:#ccc}.card p,.best,.tag{color:#222}.big{-webkit-text-stroke:2px #c2185b}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div>
+    <h1>Pick the right place to <em>sharpen</em> your code.</h1>
+    <p>Every platform below lists its level, pricing, and what it is best for, so you can choose a small stack and stick with it. Star the ones you use; your picks are saved in this browser.</p>
+  </div>
+  <div class="big" aria-hidden="true"><span id="bigN">0</span><small>platforms</small></div>
+</header>
+
+<main>
+  <div class="controls">
+    <div class="row">
+      <div class="search"><input id="q" type="search" placeholder="Search a site, skill or language (e.g. SQL, graphs, ML)" aria-label="Search platforms" /></div>
+      <div class="count" id="count" aria-live="polite"></div>
+    </div>
+    <div class="chips" id="catChips" role="group" aria-label="Filter by category"></div>
+    <div class="chips" id="filterChips" role="group" aria-label="Filter by price, level and saved"></div>
+  </div>
+
+  <div id="list"></div>
+  <p class="empty" id="empty">No platform matches. Clear the search or reset the filters.</p>
+
+  <aside class="plan">
+    <h2>A focused starting stack</h2>
+    <ol>
+      <li><b>Learn patterns:</b> NeetCode or Take U Forward as your DSA roadmap.</li>
+      <li><b>Practise daily:</b> LeetCode, 1–2 problems, reviewing every solution you miss.</li>
+      <li><b>Build speed weekly:</b> one Codeforces or CodeChef contest under time pressure.</li>
+      <li><b>Go deep monthly:</b> CSES or AtCoder for systematic algorithm practice.</li>
+      <li><b>Cover AI/ML and data:</b> Kaggle for real datasets, Deep-ML for implementing ML from scratch, DataLemur for SQL.</li>
+    </ol>
+    <p class="note">You do not need every platform. Pick four or five, practise consistently, and judge progress by problems you can solve cold, not by solved counts.</p>
+  </aside>
+</main>
+<footer>Developer Toolkit · Coding practice directory · Pricing and features change, so check each site · Links open in a new tab</footer>
+
+<script>
+const CATS = {
+  dsa:{t:"DSA & interview prep",d:"Build problem-solving patterns and prepare for technical interviews."},
+  cp:{t:"Competitive programming & contests",d:"Improve speed, accuracy and implementation under time pressure."},
+  lang:{t:"Fundamentals & language practice",d:"Strengthen fluency, write cleaner code, learn new concepts."},
+  build:{t:"Projects & interactive challenges",d:"Apply your skills to builds, games and real-world-style tasks."},
+  ml:{t:"AI/ML & data",d:"Practise machine learning, data science and SQL."}
+};
+// level: B = Beginner, I = Intermediate, A = Advanced
+const S = [
+ // DSA & interview
+ {c:"dsa",n:"LeetCode",u:"https://leetcode.com/",tag:"Interview DSA",d:"Interview-style problems across arrays, strings, trees, graphs, dynamic programming and more.",best:"Daily problem solving and company-tagged interview prep",l:"I",p:"Freemium",k:"leetcode algorithms contests"},
+ {c:"dsa",n:"NeetCode",u:"https://neetcode.io/",tag:"Structured roadmap",d:"Curated problem lists grouped by pattern, with video explanations and a clear study order.",best:"Learning patterns instead of random grinding",l:"B",p:"Freemium",k:"roadmap patterns blind 75 neetcode 150"},
+ {c:"dsa",n:"Take U Forward",u:"https://takeuforward.org/",tag:"Structured roadmap",d:"Striver's DSA sheets and course with step-by-step topic order, notes and video lessons.",best:"A complete free DSA path, popular for Indian placements",l:"B",p:"Free",k:"striver sde sheet a2z dsa placement"},
+ {c:"dsa",n:"GeeksforGeeks",u:"https://www.geeksforgeeks.org/",tag:"Topic-wise learning",d:"DSA concepts, C++ and algorithm explanations with placement-oriented practice questions.",best:"Looking up a concept and its standard implementations",l:"B",p:"Freemium",k:"gfg c++ placement theory cs fundamentals"},
+ {c:"dsa",n:"InterviewBit",u:"https://www.interviewbit.com/",tag:"Interview practice",d:"Structured coding interview tracks and problems designed around technical hiring.",best:"Guided, topic-ordered interview preparation",l:"I",p:"Free",k:"scaler interview preparation"},
+ {c:"dsa",n:"CodeSignal",u:"https://codesignal.com/",tag:"Assessments",d:"Timed coding assessments and interview-style challenges used in technical screening.",best:"Practising for online assessments",l:"I",p:"Free",k:"assessment screening oa timed"},
+ {c:"dsa",n:"Codility",u:"https://www.codility.com/",tag:"Assessments",d:"Lessons and timed tasks in the format many companies use for online coding tests.",best:"Getting comfortable with timed screening tests",l:"I",p:"Free",k:"assessment screening lessons timed"},
+ {c:"dsa",n:"AlgoExpert",u:"https://www.algoexpert.io/",tag:"Curated + video",d:"A hand-picked problem set with video walkthroughs and a built-in coding environment.",best:"A paid, tightly curated interview course",l:"I",p:"Paid",k:"interview videos curated"},
+ // CP
+ {c:"cp",n:"Codeforces",u:"https://codeforces.com/",tag:"Competitive coding",d:"Regular rated contests and a huge problem archive across every difficulty level.",best:"Weekly contests and rating-driven growth",l:"A",p:"Free",k:"contests rating div2 div3 cp"},
+ {c:"cp",n:"CodeChef",u:"https://www.codechef.com/",tag:"Contests",d:"Monthly contests, practice problems and learning paths for competitive programming.",best:"Beginner-friendly contests with a large Indian community",l:"I",p:"Free",k:"starters long challenge cook-off cp"},
+ {c:"cp",n:"AtCoder",u:"https://atcoder.jp/",tag:"Beginner-friendly contests",d:"Well-designed regular contests with clean problem statements and high-quality editorials.",best:"Contest problems with excellent quality control",l:"I",p:"Free",k:"abc arc agc contests japan"},
+ {c:"cp",n:"CSES Problem Set",u:"https://cses.fi/problemset/",tag:"Algorithm practice",d:"A tidy collection covering sorting, searching, trees, graphs and dynamic programming.",best:"Systematic algorithm practice, topic by topic",l:"I",p:"Free",k:"sorting searching graphs dp trees problem set"},
+ {c:"cp",n:"USACO Guide",u:"https://usaco.guide/",tag:"Learning path",d:"Free modules and problem sets that take you from beginner to advanced competitive programming.",best:"A free, well-organised competitive programming curriculum",l:"B",p:"Free",k:"usaco olympiad curriculum guide"},
+ {c:"cp",n:"Kattis",u:"https://open.kattis.com/",tag:"Online judge",d:"Problems used in ICPC-style contests, with difficulty ratings and many language options.",best:"ICPC-style practice",l:"I",p:"Free",k:"icpc judge contests"},
+ {c:"cp",n:"SPOJ",u:"https://www.spoj.com/",tag:"Online judge",d:"A large archive of classic algorithmic problems for implementing efficient solutions.",best:"Older classic problems and judge-style practice",l:"A",p:"Free",k:"sphere online judge archive"},
+ {c:"cp",n:"HackerEarth",u:"https://www.hackerearth.com/",tag:"Challenges",d:"Coding challenges, contests and hiring assessments across many topics.",best:"Hackathons and company-hosted challenges",l:"I",p:"Free",k:"hiring hackathon challenges contests"},
+ // Language
+ {c:"lang",n:"HackerRank",u:"https://www.hackerrank.com/",tag:"Language practice",d:"Topic-based exercises for C++, Python, SQL and core problem solving, with skill certificates.",best:"Language basics and SQL drills",l:"B",p:"Free",k:"c++ python sql java certificate skills"},
+ {c:"lang",n:"Exercism",u:"https://exercism.org/",tag:"Language fluency",d:"Focused exercises in 70+ languages, with optional mentor feedback on your code.",best:"Writing idiomatic, cleaner code in a new language",l:"B",p:"Free",k:"c++ python rust mentoring tracks"},
+ {c:"lang",n:"Codewars",u:"https://www.codewars.com/",tag:"Short challenges",d:"Bite-sized Kata in many languages, with a view of how other people solved the same problem.",best:"Quick daily reps and learning from alternative solutions",l:"B",p:"Free",k:"kata daily practice"},
+ {c:"lang",n:"Project Euler",u:"https://projecteuler.net/",tag:"Math + code",d:"Mathematical and computational puzzles that reward insight and efficient implementation.",best:"Number theory and math-heavy problem solving",l:"A",p:"Free",k:"math number theory puzzles"},
+ {c:"lang",n:"freeCodeCamp",u:"https://www.freecodecamp.org/",tag:"Learn by building",d:"Structured lessons and certification projects in programming, web development and data.",best:"Full beginner-to-project learning paths",l:"B",p:"Free",k:"web development courses projects javascript"},
+ // Build
+ {c:"build",n:"Frontend Mentor",u:"https://www.frontendmentor.io/",tag:"Frontend projects",d:"Build real pages from professional design briefs to practise HTML, CSS and JavaScript.",best:"Portfolio-ready UI projects",l:"B",p:"Freemium",k:"html css javascript ui responsive"},
+ {c:"build",n:"CodinGame",u:"https://www.codingame.com/",tag:"Game-based coding",d:"Interactive puzzles, bot-building contests and programming games in your language of choice.",best:"Making algorithm practice fun and visual",l:"I",p:"Free",k:"games bots puzzles"},
+ {c:"build",n:"Advent of Code",u:"https://adventofcode.com/",tag:"Annual event",d:"A yearly December calendar of puzzles with a story, solvable in any language.",best:"Learning a new language through puzzles",l:"I",p:"Free",k:"december puzzles yearly event"},
+ // ML
+ {c:"ml",n:"Kaggle",u:"https://www.kaggle.com/",tag:"Data science",d:"Datasets, notebooks, free micro-courses and competitions for machine learning.",best:"End-to-end ML projects and competitions",l:"I",p:"Free",k:"machine learning datasets notebooks competitions data science ai"},
+ {c:"ml",n:"Deep-ML",u:"https://www.deep-ml.com/",tag:"ML from scratch",d:"Coding problems that have you implement ML and deep learning building blocks yourself.",best:"Understanding ML maths and algorithms beyond library calls",l:"I",p:"Free",k:"machine learning deep learning implement numpy ai"},
+ {c:"ml",n:"DataLemur",u:"https://datalemur.com/",tag:"SQL interviews",d:"SQL questions drawn from real data and analytics interviews, with explained solutions.",best:"SQL for data and ML-engineer interviews",l:"I",p:"Freemium",k:"sql database data analyst interview"}
+];
+const LV = {B:"Beginner",I:"Intermediate",A:"Advanced"};
+const $ = s => document.querySelector(s);
+let state = {cat:"all", price:"all", level:"all", saved:false, q:""};
+let saved = new Set();
+try { saved = new Set(JSON.parse(localStorage.getItem("cp_saved")||"[]")); } catch(e){}
+const persist = () => { try { localStorage.setItem("cp_saved", JSON.stringify([...saved])); } catch(e){} };
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function chip(parent, label, group, value){
+  const b = document.createElement("button");
+  b.className = "chip"; b.textContent = label; b.dataset.g = group; b.dataset.v = value;
+  b.addEventListener("click", () => {
+    if (group === "saved") state.saved = !state.saved;
+    else state[group] = (state[group] === value && group !== "cat") ? "all" : value;
+    render();
+  });
+  parent.appendChild(b);
+}
+chip($("#catChips"), "All", "cat", "all");
+Object.entries(CATS).forEach(([k,v]) => chip($("#catChips"), v.t, "cat", k));
+["Free","Freemium","Paid"].forEach(p => chip($("#filterChips"), p, "price", p));
+Object.entries(LV).forEach(([k,v]) => chip($("#filterChips"), v, "level", k));
+chip($("#filterChips"), "★ Saved", "saved", "1");
+
+function match(s){
+  if (state.cat !== "all" && s.c !== state.cat) return false;
+  if (state.price !== "all" && s.p !== state.price) return false;
+  if (state.level !== "all" && s.l !== state.level) return false;
+  if (state.saved && !saved.has(s.n)) return false;
+  if (state.q) {
+    const hay = [s.n,s.tag,s.d,s.best,s.k,LV[s.l],s.p,CATS[s.c].t].join(" ").toLowerCase();
+    return state.q.split(/\s+/).every(w => hay.includes(w));
+  }
+  return true;
+}
+
+function render(){
+  document.querySelectorAll(".chip").forEach(b => {
+    const g = b.dataset.g, v = b.dataset.v;
+    b.setAttribute("aria-pressed", g === "saved" ? state.saved : state[g] === v);
+  });
+  const list = $("#list"); list.innerHTML = "";
+  let shown = 0;
+  Object.entries(CATS).forEach(([key, cat]) => {
+    const items = S.filter(s => s.c === key && match(s));
+    if (!items.length) return;
+    shown += items.length;
+    const sec = document.createElement("section"); sec.className = "sec";
+    sec.innerHTML = `<div class="sec-head"><h2>${cat.t}</h2><p>${cat.d}</p></div><div class="grid"></div>`;
+    const grid = sec.querySelector(".grid");
+    items.forEach(s => {
+      const on = saved.has(s.n);
+      const card = document.createElement("article"); card.className = "card";
+      card.innerHTML = `
+        <div class="top"><div><h3>${esc(s.n)}</h3><span class="tag">${esc(s.tag)}</span></div>
+        <button class="save" aria-pressed="${on}" aria-label="Save ${esc(s.n)}" title="Save">${on ? "★" : "☆"}</button></div>
+        <p>${esc(s.d)}</p>
+        <div class="best"><b>Best for:</b> ${esc(s.best)}</div>
+        <div class="meta"><span class="pill">${LV[s.l]}</span><span class="pill ${s.p === "Paid" ? "paid" : "free"}">${s.p}</span></div>
+        <a class="go" href="${s.u}" target="_blank" rel="noopener noreferrer">Open ${esc(s.n)} ↗</a>`;
+      card.querySelector(".save").addEventListener("click", () => {
+        saved.has(s.n) ? saved.delete(s.n) : saved.add(s.n);
+        persist(); render();
+      });
+      grid.appendChild(card);
+    });
+    list.appendChild(sec);
+  });
+  $("#count").textContent = `${shown} of ${S.length} platforms · ${saved.size} saved`;
+  $("#empty").style.display = shown ? "none" : "block";
+}
+
+$("#q").addEventListener("input", e => { state.q = e.target.value.trim().toLowerCase(); render(); });
+
+// One-time count-up in the hero
+(function(){
+  const el = $("#bigN"), N = S.length;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) { el.textContent = N; return; }
+  const t0 = performance.now(), dur = 900;
+  (function f(t){ const p = Math.min((t - t0)/dur, 1); el.textContent = Math.round(N * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(f); })(t0);
+})();
+render();
+</script>
+</body>
+</html>
